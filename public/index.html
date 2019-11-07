@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Blackjack</title>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/screen.css">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/screen.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1 class='hello-world'></h1>
+    <header>Blackjack</header>
+    <button class="playerHit">Hit</button>
+    <button class="playerStay">Stay</button>
+    <p class="playerHandTotal"></p>
+    <p>Player has:</p>
+    <ul class="playerHand"></ul>
+    <p class="dealerHandTotal"></p>
+    <p>Dealer has:</p>
+    <ul class="dealerHand"></ul>
     <script src="/main.js" charset="utf-8"></script>
   </body>
 </html>
