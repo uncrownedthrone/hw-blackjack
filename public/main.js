@@ -1,13 +1,12 @@
 // DONE: player gets card from shuffled deck
 // DONE: dealer gets card from shuffled deck
-// TODO: DISPLAY: player and dealer cards
-
-// TODO: add up player card values
-// TODO: add up dealer card values
+// DONE: add up player card values
+// DONE: add up dealer card values
 
 // TODO: compare card values to see who won
 // TODO: assign buttons for HIT STAND and RESET
 // TODO: logic for dealer hitting or standing
+// TODO: display player and dealer cards
 // TODO: reset game button
 
 const qs = (e) => document.querySelector(e)
@@ -46,6 +45,7 @@ const getCardValue = (rank) => {
   }
 }
 
+// shuffles deck
 const createShuffleDeck = () => {
   for (let i = 0; i < suits.length; i++) {
     for (let j = 0; j < ranks.length; j++) {
@@ -76,10 +76,27 @@ const deal = (key) => {
   console.log(dealer, 'dealerHand')
 }
 
+// get value of player and dealer hands
+const getValueOfAllCards = () => {
+  let valueOfPlayersHand = 0
+  player.forEach((card) => {
+    valueOfPlayersHand = valueOfPlayersHand + card.value
+  })
+  let valueOfDealersHand = 0
+  dealer.forEach((card) => {
+    valueOfDealersHand = valueOfDealersHand + card.value
+  })
+  // return valueOfPlayersHand
+  console.log(valueOfDealersHand)
+  // return valueOfPlayersHand
+  console.log(valueOfPlayersHand)
+}
+
 const main = () => {
   createShuffleDeck()
   deal(player)
   deal(dealer)
+  getValueOfAllCards()
 }
 
 document.addEventListener('DOMContentLoaded', main)
