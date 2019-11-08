@@ -77,6 +77,7 @@ const deal = (key) => {
 }
 
 // get value of player and dealer hands
+// make sure hit value adds to total as cards are added
 const getValueOfAllCards = () => {
   let valueOfPlayersHand = 0
   player.forEach((card) => {
@@ -92,6 +93,13 @@ const getValueOfAllCards = () => {
   console.log(valueOfPlayersHand)
 }
 
+// hit and stand buttons
+const hitButton = () => {
+  const hitCard = deck.pop()
+  player.push(hitCard)
+  console.log(player, 'playerHandAfterHit')
+}
+
 const main = () => {
   createShuffleDeck()
   deal(player)
@@ -100,3 +108,5 @@ const main = () => {
 }
 
 document.addEventListener('DOMContentLoaded', main)
+// ask mark
+qs('.playerHit').addEventListener('click')
