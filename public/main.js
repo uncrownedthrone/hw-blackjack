@@ -2,6 +2,7 @@
 // DONE: dealer gets card from shuffled deck
 // DONE: add up player card values
 // DONE: add up dealer card values
+// DONE: get card images to show up
 
 // TODO: compare card values to see who won
 // TODO: assign buttons for HIT STAND and RESET
@@ -9,8 +10,7 @@
 // TODO: display player and dealer cards
 // TODO: reset game button
 
-const qs = (e) => document.querySelector(e)
-
+// defining ranks
 const ranks = [
   'Ace',
   '2',
@@ -26,15 +26,17 @@ const ranks = [
   'Queen',
   'King'
 ]
-const suits = ['Hearts', 'Clubs', 'Spades', 'Diamonds']
+
+// defining suits
+const suits = ['Spades', 'Diamonds', 'Clubs', 'Hearts']
 
 const deck = []
-const dealer = []
-const player = []
-let playerOneTotal = 0
-let playerTwoTotal = 0
+const playerHand = []
+const dealerHand = []
+const show = true
+const hide = false
 
-// get card value
+// getting the value of the card
 const getCardValue = (rank) => {
   if (rank === 'Ace') {
     return 11
@@ -45,14 +47,15 @@ const getCardValue = (rank) => {
   }
 }
 
-// shuffles deck
-const createShuffleDeck = () => {
+// shuffling deck and getting card images for each
+const main = () => {
   for (let i = 0; i < suits.length; i++) {
     for (let j = 0; j < ranks.length; j++) {
       const card = {
         rank: ranks[j],
         suit: suits[i],
-        value: getCardValue(ranks[j])
+        value: getCardValue(ranks[j]),
+        imageUrl: ranks[j] + '_of_' + suits[i] + '.svg'
       }
       deck.push(card)
     }
@@ -64,49 +67,66 @@ const createShuffleDeck = () => {
     deck[j] = temp
   }
   console.log(deck)
+  beginGame()
 }
 
-// deals player and dealer cards
-const deal = (key) => {
-  for (let i = 0; i < 2; i++) {
-    const topCard = deck.pop()
-    key.push(topCard)
+// show the value of the players cards
+const showSum = (hand, sumContainer) => {
+  let playerSum = 0
+  for (let i = 0; i < hand.length; i++) {
+    playerSum += hand[i].value
   }
-  console.log(player, 'playerHand')
-  console.log(dealer, 'dealerHand')
+  document.querySelector(sumContainer).textContent = playerSum
 }
 
-// get value of player and dealer hands
-// make sure hit value adds to total as cards are added
-const getValueOfAllCards = () => {
-  let valueOfPlayersHand = 0
-  player.forEach((card) => {
-    valueOfPlayersHand = valueOfPlayersHand + card.value
-  })
-  let valueOfDealersHand = 0
-  dealer.forEach((card) => {
-    valueOfDealersHand = valueOfDealersHand + card.value
-  })
-  // return valueOfPlayersHand
-  console.log(valueOfDealersHand)
-  // return valueOfPlayersHand
-  console.log(valueOfPlayersHand)
+// deals 2 cards face up for player and 2 face down for dealer
+const dealCard = (deckFrom, handTo, imageContainer, showHide) => {
+  handTo.push(deckFrom.pop())
+
+  const cardLi = document.createElement('li')
+  const img = document.createElement('img')
+  if (showHide) {
+    img.src = './images/cards/' + handTo[handTo.length - 1].imageUrl
+    img.alt = './images/cards/card_back.svg'
+  } else {
+    img.alt = './images/cards/' + handTo[handTo.length - 1].imageUrl
+    img.src = './images/cards/card_back.svg'
+  }
+  cardLi.appendChild(img)
+  document.querySelector(imageContainer).appendChild(cardLi)
 }
 
-// hit and stand buttons
-const hitButton = () => {
-  const hitCard = deck.pop()
-  player.push(hitCard)
-  console.log(player, 'playerHandAfterHit')
+// dealer plays his hand when player stands
+const dealerPlays = () => {
+  flipCard('.dealerHand')
+  showSum(dealerHand, '.dealerSum')
 }
 
-const main = () => {
-  createShuffleDeck()
-  deal(player)
-  deal(dealer)
-  getValueOfAllCards()
+// dealer shows cards when player hits stand
+const flipCard = (imageContainer) => {
+  for (
+    let i = 0;
+    i < document.querySelector(imageContainer).children.length;
+    i++
+  ) {
+    const img = document.querySelector(imageContainer).children[i].children[0]
+    const temp = img.src
+    img.src = img.alt
+    img.alt = temp
+  }
+}
+
+// starts game and shows player card values
+const beginGame = () => {
+  dealCard(deck, playerHand, '.playerHand', show)
+  dealCard(deck, dealerHand, '.dealerHand', hide)
+  dealCard(deck, playerHand, '.playerHand', show)
+  dealCard(deck, dealerHand, '.dealerHand', hide)
+
+  showSum(playerHand, '.playerSum')
 }
 
 document.addEventListener('DOMContentLoaded', main)
-// ask mark
-qs('.playerHit').addEventListener('click')
+
+// dealer plays when player stands
+document.querySelector('.standButton').addEventListener('click', dealerPlays)

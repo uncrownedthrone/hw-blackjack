@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head lang="en">
     <meta charset="UTF-8" />
@@ -15,8 +15,8 @@
     <h1 class="title">♣️♦️Blackjack♥️♠️</h1>
     <p class="winnerMessage"></p>
     <section class="buttons">
-      <button class="playerHit">Hit</button>
-      <button class="playerStand">Stand</button>
+      <button class="hitButton">Hit</button>
+      <button class="standButton">Stand</button>
     </section>
     <p class="playerHandTotal"></p>
     <p>Player has:</p>
@@ -24,8 +24,37 @@
     <p class="dealerHandTotal"></p>
     <p>Dealer has:</p>
     <ul class="dealerHand"></ul>
-    <button class="reset">Reset</button>
+    <button class="resetButton">Reset</button>
     <footer>Made with 💜at SDG</footer>
     <script src="/main.js" charset="utf-8"></script>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blackjack</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/screen.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>♣️♦️Blackjack♥️♠️</h1>
+    <button class="hitButton">Hit</button>
+    <button class="standButton">Stand</button>
+    <button class="resetButton">Reset</button>
+    <h2>Player</h2>
+    <h3 class="playerSum"></h3>
+    <ul class="playerHand"></ul>
+    <h2>Dealer</h2>
+    <h3 class="dealerSum"></h3>
+    <ul class="dealerHand"></ul>
+    <script src="/main.js" charset="utf-8"></script>
+  </body>
+  <footer>Made with 💜at SDG</footer>
 </html>
