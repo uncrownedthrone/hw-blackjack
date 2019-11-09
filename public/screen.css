@@ -22,10 +22,15 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-h3.player-number {
-  font-size: rem;
+h3 {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row nowrap;
+  padding: 1rem;
 }
 
 li {
@@ -36,13 +41,13 @@ ul {
   display: flex;
 }
 
-ul.player-hand {
+ul.playerHand {
   display: flex;
   text-align: left;
   align-content: left;
 }
 
-ul.dealer-hand {
+ul.dealerHand {
   display: flex;
   text-align: left;
   align-content: left;
@@ -62,6 +67,7 @@ footer {
   border: 2px solid black;
   border-radius: 5px;
   width: 100px;
+  font-family: 'Fjalla One', sans-serif;
 }
 
 .standButton {
@@ -72,6 +78,7 @@ footer {
   border: 2px solid black;
   border-radius: 5px;
   width: 100px;
+  font-family: 'Fjalla One', sans-serif;
 }
 
 .resetButton {
@@ -81,4 +88,10 @@ footer {
   border: 2px solid black;
   border-radius: 5px;
   width: 100px;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+section {
+  display: flex;
+  flex-flow: row;
 }
