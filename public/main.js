@@ -3,11 +3,11 @@
 // DONE: add up player card values
 // DONE: add up dealer card values
 // DONE: get card images to show up
+// DONE: display player and dealer cards
 
 // TODO: compare card values to see who won
 // TODO: assign buttons for HIT STAND and RESET
 // TODO: logic for dealer hitting or standing
-// TODO: display player and dealer cards
 // TODO: reset game button
 
 // defining ranks

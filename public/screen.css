@@ -33,30 +33,12 @@ h3 {
   padding: 1rem;
 }
 
-li {
-  list-style: none;
-}
-
 ul {
   display: flex;
 }
 
-ul.playerHand {
-  display: flex;
-  text-align: left;
-  align-content: left;
-}
-
-ul.dealerHand {
-  display: flex;
-  text-align: left;
-  align-content: left;
-}
-
-footer {
-  width: 100%;
-  justify-content: center;
-  align-content: center;
+li {
+  list-style: none;
 }
 
 .hitButton {
@@ -64,7 +46,7 @@ footer {
   background: green;
   margin: 0.5rem;
   cursor: pointer;
-  border: 2px solid black;
+  border: 2px solid green;
   border-radius: 5px;
   width: 100px;
   font-family: 'Fjalla One', sans-serif;
@@ -75,7 +57,7 @@ footer {
   background: red;
   margin: 0.5rem;
   cursor: pointer;
-  border: 2px solid black;
+  border: 2px solid red;
   border-radius: 5px;
   width: 100px;
   font-family: 'Fjalla One', sans-serif;
@@ -85,13 +67,31 @@ footer {
   font-size: 2rem;
   margin: 0.5rem;
   cursor: pointer;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 5px;
   width: 100px;
   font-family: 'Fjalla One', sans-serif;
 }
 
+.playerHand {
+  display: flex;
+  text-align: left;
+  align-content: left;
+}
+
+.dealerHand {
+  display: flex;
+  text-align: left;
+  align-content: left;
+}
+
 section {
   display: flex;
   flex-flow: row;
+}
+
+footer {
+  width: 100%;
+  justify-content: center;
+  align-content: center;
 }
