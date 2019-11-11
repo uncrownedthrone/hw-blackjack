@@ -94,14 +94,6 @@ const dealCard = (deckFrom, handTo, imageContainer, showHide) => {
   qs(imageContainer).appendChild(cardLi)
 }
 
-// dealer plays his hand when player stands
-const dealerPlays = () => {
-  flipCard('.dealerHand')
-  showSum(dealerHand, '.dealerSum')
-  qs('.standButton').disabled = true
-  qs('.hitButton').disabled = true
-}
-
 // dealer shows cards when player hits stand
 const flipCard = (imageContainer) => {
   for (let i = 0; i < qs(imageContainer).children.length; i++) {
@@ -112,66 +104,76 @@ const flipCard = (imageContainer) => {
   }
 }
 
+// dealer plays his hand when player stands
+const dealerPlays = () => {
+  flipCard('.dealerHand')
+  showSum(dealerHand, '.dealerSum')
+  qs('.standButton').disabled = true
+  qs('.hitButton').disabled = true
+  console.log(dealerHand)
+  gameEnd()
+}
+
 const hitPlayer = () => {
-  for (let i = 0; i < 1; i++) {
-    const hitPlayerHand = deck.pop()
-    playerHand.push(hitPlayerHand)
-    const playerHandLiTwo = document.createElement('li')
-    const imgTwo = document.createElement('img')
-    imgTwo.src = './images/cards/' + hitPlayerHand.imageUrl
-    playerHandLiTwo.appendChild(imgTwo)
-    qs('.playerHand').appendChild(playerHandLiTwo)
-    showSum(playerHand, '.playerSum')
-  }
-  if (playerHand > 21) {
-    qs('.playerSum').textContent = 'BUSTS'
-    qs('.dealerSum').textContent = 'WINS'
-    qs('.hitButton').disabled = true
-    qs('.dealerHitButton').disabled = true
-    qs('.standButton').disabled = true
-  } else if (playerHand === 20) {
-    qs('.playerSum').textContent = 'WINS'
-    qs('.dealerSum').textContent = 'BUSTS'
-    qs('.hitButton').disabled = true
-    qs('.standButton').disabled = true
-  }
+  const hitPlayerHand = deck.pop()
+  playerHand.push(hitPlayerHand)
+  const playerHandLiTwo = document.createElement('li')
+  const imgTwo = document.createElement('img')
+  imgTwo.src = './images/cards/' + hitPlayerHand.imageUrl
+  playerHandLiTwo.appendChild(imgTwo)
+  qs('.playerHand').appendChild(playerHandLiTwo)
+  showSum(playerHand, '.playerSum')
 }
 
 const hitDealer = () => {
-  for (let i = 0; i < 1; i++) {
-    const hitDealerHand = deck.pop()
-    dealerHand.push(hitDealerHand)
-    const dealerHandLiTwo = document.createElement('li')
-    const imgTwo = document.createElement('img')
-    imgTwo.src = './images/cards/' + hitDealerHand.imageUrl
-    dealerHandLiTwo.appendChild(imgTwo)
-    qs('.dealerHand').appendChild(dealerHandLiTwo)
-    showSum(dealerHand, '.dealerSum')
-  }
-  if (dealerHand <= 17) {
+  const hitDealerHand = deck.pop()
+  dealerHand.push(hitDealerHand)
+  const dealerHandLiTwo = document.createElement('li')
+  const imgTwo = document.createElement('img')
+  imgTwo.src = './images/cards/' + hitDealerHand.imageUrl
+  dealerHandLiTwo.appendChild(imgTwo)
+  qs('.dealerHand').appendChild(dealerHandLiTwo)
+  showSum(dealerHand, '.dealerSum')
+  gameEnd()
+}
+
+const gameEnd = () => {
+  // const playerHand = qs('.playerSum').value
+  // const dealerHand = qs('.dealerSum').value
+  if (playerHand > 21) {
+    qs('.playerSum').textContent = 'BUSTS - 1'
+    qs('.dealerSum').textContent = 'WIN'
+    qs('.hitButton').disabled = true
     qs('.dealerHitButton').disabled = true
-  }
-  if (dealerHand > 21) {
-    qs('.playerSum').textContent = 'WINS'
-    qs('.dealerSum').textContent = 'BUSTS'
+    qs('.standButton').disabled = true
+  } else if (playerHand === 21) {
+    qs('.playerSum').textContent = 'WIN - 2'
+    qs('.dealerSum').textContent = 'LOSE'
+    qs('.hitButton').disabled = true
+    qs('.standButton').disabled = true
+  } else if (dealerHand >= 17) {
+    qs('.dealerHitButton').disabled = true
+  } else if (dealerHand > 21) {
+    qs('.playerSum').textContent = 'WIN - 3'
+    qs('.dealerSum').textContent = 'LOSE'
     qs('.hitButton').disabled = true
     qs('.standButton').disabled = true
     qs('.dealerHitButton').disabled = true
   } else if (dealerHand === 21) {
-    qs('.playerSum').textContent = 'BUSTS'
-    qs('.dealerSum').textContent = 'WINS'
-    qs('.hitButton').disabled = true
-    qs('.standButton').disabled = true
-    qs('.dealerHitButton').disabled = true
-  } else if (dealerHand > 21) {
-    qs('.playerSum').textContent = 'WINS'
-    qs('.dealerSum').textContent = 'BUSTS'
+    qs('.playerSum').textContent = 'LOSE - 4'
+    qs('.dealerSum').textContent = 'WIN'
     qs('.hitButton').disabled = true
     qs('.standButton').disabled = true
     qs('.dealerHitButton').disabled = true
   } else if (dealerHand > playerHand) {
-    qs('.playerSum').textContent = 'WINS'
-    qs('.dealerSum').textContent = 'BUSTS'
+    qs('.playerSum').textContent = 'WINNER - 5'
+    qs('.dealerSum').textContent = 'LOSE'
+    qs('.hitButton').disabled = true
+    qs('.standButton').disabled = true
+    qs('.dealerHitButton').disabled = true
+  } else if (dealerHand === playerHand) {
+    qs('.playerSum').textContent = 'PUSH - 6'
+    qs('.dealerSum').textContent = 'PUSH'
     qs('.hitButton').disabled = true
     qs('.standButton').disabled = true
     qs('.dealerHitButton').disabled = true
