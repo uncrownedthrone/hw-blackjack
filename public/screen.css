@@ -31,6 +31,7 @@ h3 {
   display: flex;
   flex-direction: row nowrap;
   padding: 1rem;
+  margin-right: 1rem;
 }
 
 ul {
@@ -41,6 +42,21 @@ li {
   list-style: none;
 }
 
+img {
+  height: 300px;
+  width: auto;
+}
+
+.dealButton {
+  font-size: 2rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 5px;
+  width: auto;
+  font-family: 'Fjalla One', sans-serif;
+}
+
 .hitButton {
   font-size: 2rem;
   background: green;
@@ -48,7 +64,7 @@ li {
   cursor: pointer;
   border: 2px solid green;
   border-radius: 5px;
-  width: 100px;
+  width: auto;
   font-family: 'Fjalla One', sans-serif;
 }
 
@@ -59,7 +75,18 @@ li {
   cursor: pointer;
   border: 2px solid red;
   border-radius: 5px;
-  width: 100px;
+  width: auto;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.dealerHitButton {
+  font-size: 2rem;
+  background: gold;
+  margin: 0.5rem;
+  cursor: pointer;
+  border: 2px solid gold;
+  border-radius: 5px;
+  width: auto;
   font-family: 'Fjalla One', sans-serif;
 }
 
@@ -69,7 +96,7 @@ li {
   cursor: pointer;
   border: 2px solid white;
   border-radius: 5px;
-  width: 100px;
+  width: auto;
   font-family: 'Fjalla One', sans-serif;
 }
 
